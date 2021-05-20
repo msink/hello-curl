@@ -4,7 +4,7 @@ hello-curl
 Kotlin/Native test repo for static `libcurl` on Windows\
 Based on samples from official Kotlin repo
 
-Curren status:
+Current status:
 - standalone portable .exe builded successfully, with some temporary hacks.
 
 Remaining issues:
