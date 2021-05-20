@@ -31,7 +31,7 @@ kotlin {
                 "-lcrypt32",
                 "-lidn2",
                 "-lpsl",
-                "-lunistring",
+                "-l:libunistring.dll.a",
                 "-liconv",
                 "-lwldap32",
                 "-lws2_32",
