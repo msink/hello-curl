@@ -15,7 +15,8 @@ jobs:
         uses: eskatos/gradle-command-action@v1
         with:
           arguments: build
-      - uses: actions/upload-artifact@v2
+      - name: Upload binaries
+        uses: actions/upload-artifact@v2
         with:
           name: mingw64
           path: build/bin/native/
