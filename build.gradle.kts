@@ -18,6 +18,7 @@ kotlin {
         binaries.executable {
             entryPoint = "curl.main"
             linkerOpts(
+                "-L${projectDir}",
                 "-L${mingwPath.resolve("lib")}",
                 "-Wl,-Bstatic",
                 "-lstdc++",
