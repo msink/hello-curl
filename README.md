@@ -1,32 +1,15 @@
-```
-> Task :cinteropLibcurlNative
-> Task :compileKotlinNative
-> Task :copyCinteropLibcurlNative
+hello-curl
+==========
 
-> Task :linkDebugExecutableNative FAILED
-e: clang++ invocation reported errors
+Kotlin/Native test repo for static `libcurl` on Windows\
+Based on samples from official Kotlin repo
 
-The clang++ command returned non-zero exit code: 1.
-output:
-ld: f:\msys64\mingw64\lib\libidn2.a(lookup.o):(.text+0x709): undefined reference to `__imp_uninorm_nfc'
-ld: f:\msys64\mingw64\lib\libidn2.a(idna.o):(.text+0xaf): undefined reference to `__imp_uninorm_nfc'
-ld: f:\msys64\mingw64\lib\libidn2.a(idna.o):(.text+0x38b): undefined reference to `__imp_UC_CATEGORY_M'
-ld: f:\msys64\mingw64\lib\libidn2.a(idna.o):(.text+0x3c0): undefined reference to `__imp_uninorm_nfc'
-ld: f:\msys64\mingw64\lib\libpsl.a(psl.c.obj):(.text+0x128b): undefined reference to `__imp_uninorm_nfkc'
-ld: f:\msys64\mingw64\lib\libpsl.a(psl.c.obj):(.text+0x1307): undefined reference to `__imp_uninorm_nfkc'
-clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+Curren status:
+- standalone portable .exe builded successfully, with some temporary hacks.
 
-FAILURE: Build failed with an exception.
+Remaining issues:
+- https://github.com/msys2/MINGW-packages/pull/8469 not merged,
+  so `libcurl.a` and `libssh2.a` are embedded in repo
+- `libunistring` linked as .dll, but magically resulted .exe still works!
 
-* What went wrong:
-Execution failed for task ':linkDebugExecutableNative'.
-> Compilation finished with errors
-
-* Try:
-Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
-
-* Get more help at https://help.gradle.org
-
-BUILD FAILED in 13s
-4 actionable tasks: 4 executed
-```
+Resulted executables are available as CI artifacts.
