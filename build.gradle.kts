@@ -7,6 +7,7 @@ repositories {
 }
 
 val mingwPath = File(System.getenv("MINGW64_DIR") ?: "C:/msys64/mingw64")
+println("MSYS2_ROOT:'${System.getenv("MSYS2_ROOT")}'")
 
 kotlin {
     mingwX64("native") {

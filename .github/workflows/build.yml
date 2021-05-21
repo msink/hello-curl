@@ -6,6 +6,7 @@ jobs:
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v2
+
       - name: Install JDK
         uses: actions/setup-java@v2
         with:
@@ -18,17 +19,14 @@ jobs:
           msystem: MINGW64
           update: true
           install: mingw-w64-x86_64-curl
-      - name: Test cygpath
-        run: msys2 -c 'cygpath -w /'
       - name: Export MSYS2_ROOT
-        run: echo "MSYS2_ROOT=$(msys2 -c 'cygpath -w /')" >> $GITHUB_ENV
-      - name: Test MSYS2_ROOT
-        run: echo ${env:MSYS2_ROOT}
+        run: echo "MSYS2_ROOT=$(msys2 -c 'cygpath -w /')" >> $env:GITHUB_ENV
 
       - name: Build
         uses: eskatos/gradle-command-action@v1
         with:
           arguments: build
+
       - name: Upload binaries
         uses: actions/upload-artifact@v2
         with:
