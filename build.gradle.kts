@@ -6,21 +6,20 @@ repositories {
     mavenCentral()
 }
 
-val mingwPath = File(System.getenv("MINGW64_DIR") ?: "C:/msys64/mingw64")
-println("MSYS2_ROOT:'${System.getenv("MSYS2_ROOT")}'")
+val mingw64Path = File(System.getenv("MINGW64_DIR") ?: "C:/msys64/mingw64")
 
 kotlin {
     mingwX64("native") {
         compilations["main"].apply {
             cinterops.create("libcurl") {
-                includeDirs.headerFilterOnly(mingwPath.resolve("include"))
+                includeDirs.headerFilterOnly(mingw64Path.resolve("include"))
             }
         }
         binaries.executable {
             entryPoint = "curl.main"
             linkerOpts(
                 "-L${projectDir}",
-                "-L${mingwPath.resolve("lib")}",
+                "-L${mingw64Path.resolve("lib")}",
                 "-Wl,-Bstatic",
                 "-lstdc++",
                 "-static",
