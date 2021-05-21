@@ -11,6 +11,18 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+
+      - name: Install MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: mingw-w64-x86_64-curl
+      - name: Export MSYS2_ROOT
+        run: echo "MSYS2_ROOT=$(msys2 -c 'cygpath -w /')" >> $GITHUB_ENV
+      - name: Test MSYS2_ROOT
+        run: echo ... $MSYS2_ROOT ...
+
       - name: Build
         uses: eskatos/gradle-command-action@v1
         with:
