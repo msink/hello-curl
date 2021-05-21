@@ -3,9 +3,6 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: windows-latest
-    defaults:
-      run:
-        shell: cmd
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v2
@@ -21,10 +18,12 @@ jobs:
           msystem: MINGW64
           update: true
           install: mingw-w64-x86_64-curl
+      - name: Test cygpath
+        run: msys2 -c 'cygpath -w /'
       - name: Export MSYS2_ROOT
         run: echo "MSYS2_ROOT=$(msys2 -c 'cygpath -w /')" >> $GITHUB_ENV
       - name: Test MSYS2_ROOT
-        run: echo ... $MSYS2_ROOT ...
+        run: echo ${env:MSYS2_ROOT}
 
       - name: Build
         uses: eskatos/gradle-command-action@v1
