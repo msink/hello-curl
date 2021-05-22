@@ -16,11 +16,10 @@ jobs:
       - name: Install MSYS2
         uses: msys2/setup-msys2@v2
         with:
-          msystem: MINGW64
           update: true
           install: mingw-w64-x86_64-curl
-      - name: Export MINGW64_DIR
-        run: echo "MINGW64_DIR=$(msys2 -c 'cygpath -m /')mingw64" >> $env:GITHUB_ENV
+      - name: Export MSYS2_ROOT
+        run: echo "MSYS2_ROOT=$(msys2 -c 'cygpath -m /')" >> $env:GITHUB_ENV
 
       - name: Build
         uses: eskatos/gradle-command-action@v1

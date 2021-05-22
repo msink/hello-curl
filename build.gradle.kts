@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: MIT
+
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
     kotlin("multiplatform") version "1.5.0"
 }
@@ -6,20 +10,25 @@ repositories {
     mavenCentral()
 }
 
-val mingw64Path = File(System.getenv("MINGW64_DIR") ?: "C:/msys64/mingw64")
+val msys2 = File(System.getenv("MSYS2_ROOT") ?: "C:/msys64/")
 
 kotlin {
-    mingwX64("native") {
+    mingwX64("mingw64")
+
+    targets.withType<KotlinNativeTarget> {
+        sourceSets["${targetName}Main"].apply {
+            kotlin.srcDir("src/nativeMain/kotlin")
+        }
         compilations["main"].apply {
             cinterops.create("libcurl") {
-                includeDirs.headerFilterOnly(mingw64Path.resolve("include"))
+                includeDirs.headerFilterOnly(msys2.resolve("${targetName}/include"))
             }
         }
         binaries.executable {
             entryPoint = "curl.main"
             linkerOpts(
                 "-L${projectDir}",
-                "-L${mingw64Path.resolve("lib")}",
+                "-L${msys2.resolve("${targetName}/lib")}",
                 "-Wl,-Bstatic",
                 "-lstdc++",
                 "-static",
