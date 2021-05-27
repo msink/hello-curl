@@ -17,8 +17,9 @@ jobs:
         uses: msys2/setup-msys2@v2
         with:
           update: true
-          install: mingw-w64-x86_64-curl
-          install: mingw-w64-i686-curl
+          install: >-
+            mingw-w64-x86_64-curl
+            mingw-w64-i686-curl
       - name: Export MSYS2_ROOT
         run: echo "MSYS2_ROOT=$(msys2 -c 'cygpath -m /')" >> $env:GITHUB_ENV
 
