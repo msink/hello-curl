@@ -14,6 +14,7 @@ val msys2 = File(System.getenv("MSYS2_ROOT") ?: "C:/msys64/")
 
 kotlin {
     mingwX64("mingw64")
+    mingwX86("mingw32")
 
     targets.withType<KotlinNativeTarget> {
         sourceSets["${targetName}Main"].apply {
