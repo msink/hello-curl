@@ -27,13 +27,13 @@ kotlin {
         binaries.executable {
             entryPoint = "curl.main"
             linkerOpts(
-                "-L${projectDir}",
+                "-L${projectDir.resolve("lib/${targetName}")}",
                 "-L${msys2.resolve("${targetName}/lib")}",
                 "-Wl,-Bstatic",
                 "-lstdc++",
                 "-static",
-                "-lcurl-winssl",
-                "-lssh2-wincng",
+                "-lcurl",
+                "-lssh2",
                 "-ladvapi32",
                 "-lbcrypt",
                 "-lbrotlidec-static",
@@ -41,7 +41,7 @@ kotlin {
                 "-lcrypt32",
                 "-lidn2",
                 "-lpsl",
-                "-l:libunistring.dll.a",
+                "-lunistring",
                 "-liconv",
                 "-lwldap32",
                 "-lws2_32",
