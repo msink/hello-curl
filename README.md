@@ -7,10 +7,8 @@ Based on samples from official Kotlin repo
 Current status:
 - standalone portable .exe builded successfully, with some temporary hacks.
 
-Remaining issues:
+Remaining issue:
 - https://github.com/msys2/MINGW-packages/pull/8469 not merged,\
   so `libcurl.a` and `libssh2.a` are embedded in repo
-- https://github.com/msys2/MINGW-packages/pull/8773 not merged,\
-  so `libidn2.a`, `libpsl.a` and `libunistring.a` are embedded in repo
 
 Resulted executables are available as CI artifacts.
