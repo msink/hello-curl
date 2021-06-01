@@ -34,20 +34,23 @@ kotlin {
                 "-lstdc++",
                 "-static",
                 "-lcurl",
+                "-lnghttp2",
+                "-lidn2",
                 "-lssh2",
+                "-lpsl",
                 "-ladvapi32",
-                "-lbcrypt",
+                "-lcrypt32",
+                "-lssl",
+                "-lcrypto",
+                "-lgdi32",
+                "-lwldap32",
+                "-lzstd",
                 "-lbrotlidec-static",
                 "-lbrotlicommon-static",
-                "-lcrypt32",
-                "-lidn2",
-                "-lpsl",
-                "-lunistring",
-                "-liconv",
-                "-lwldap32",
-                "-lws2_32",
                 "-lz",
-                "-lzstd"
+                "-lws2_32",
+                "-lunistring",
+                "-liconv"
             )
         }
     }
