@@ -28,7 +28,6 @@ kotlin {
         binaries.executable {
             entryPoint = "curl.main"
             linkerOpts(
-                "-L${projectDir.resolve("lib/${targetName}")}",
                 "-L${msys2.resolve("${targetName}/lib")}",
                 "-Wl,-Bstatic",
                 "-lstdc++",
