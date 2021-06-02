@@ -11,6 +11,7 @@ repositories {
 }
 
 val msys2 = File(System.getenv("MSYS2_ROOT") ?: "C:/msys64/")
+//val msys2 = projectDir.resolve("bundle/2021-06-02")
 
 kotlin {
     mingwX64("mingw64")
