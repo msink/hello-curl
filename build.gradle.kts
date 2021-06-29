@@ -3,7 +3,7 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
-    kotlin("multiplatform") version "1.5.10"
+    kotlin("multiplatform") version "1.5.20"
 }
 
 repositories {
@@ -17,9 +17,13 @@ kotlin {
     mingwX64("mingw64")
     mingwX86("mingw32")
 
+    val commonMain by sourceSets.getting
+    val nativeMain by sourceSets.creating {
+        dependsOn(commonMain)
+    }
     targets.withType<KotlinNativeTarget> {
         sourceSets["${targetName}Main"].apply {
-            kotlin.srcDir("src/nativeMain/kotlin")
+            dependsOn(nativeMain)
         }
         compilations["main"].apply {
             cinterops.create("libcurl") {
