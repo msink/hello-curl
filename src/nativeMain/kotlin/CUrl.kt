@@ -15,7 +15,6 @@ class CUrl(url: String)  {
     private val curl = curl_easy_init()
 
     init {
-        curl_easy_setopt(curl, CURLOPT_SSL_OPTIONS, CURLSSLOPT_NATIVE_CA)
         curl_easy_setopt(curl, CURLOPT_URL, url)
         val header = staticCFunction(::header_callback)
         curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, header)
