@@ -3,15 +3,15 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
-    kotlin("multiplatform") version "1.5.20"
+    kotlin("multiplatform") version "1.7.0"
 }
 
 repositories {
     mavenCentral()
 }
 
-val msys2 = File(System.getenv("MSYS2_ROOT") ?: "C:/msys64/")
-//val msys2 = projectDir.resolve("bundle/2021-06-02")
+//val msys2 = File(System.getenv("MSYS2_ROOT") ?: "C:/msys64/")
+val msys2 = projectDir.resolve("bundle/2022-06-23")
 
 kotlin {
     mingwX64("mingw64")
@@ -20,6 +20,9 @@ kotlin {
     val commonMain by sourceSets.getting
     val nativeMain by sourceSets.creating {
         dependsOn(commonMain)
+        sourceSets.all {
+            languageSettings.optIn("kotlinx.cinterop.UnsafeNumber")
+        }
     }
     targets.withType<KotlinNativeTarget> {
         sourceSets["${targetName}Main"].apply {
@@ -45,8 +48,8 @@ kotlin {
                 "-lcrypt32",
                 "-lwldap32",
                 "-lzstd",
-                "-lbrotlidec-static",
-                "-lbrotlicommon-static",
+                "-lbrotlidec",
+                "-lbrotlicommon",
                 "-lz",
                 "-lws2_32",
                 "-lunistring",
