@@ -26,7 +26,7 @@ To build locally: just `./gradlew build`
 * switch back to `curl-winssl` variant
 
 
-#### 28 Jun 2022
+#### 23 Jun 2022
 
 * update Kotlin to 1.7.0
-* switch to bunled libs (for cross-compilation on Linux and Mac hosts)
+* switch to bundled libs (for cross-compilation on Linux and Mac hosts)
