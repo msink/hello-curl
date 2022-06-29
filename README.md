@@ -6,10 +6,7 @@ Based on samples from official Kotlin repo.
 
 Resulted executables are available as CI artifact.
 
-To build locally:
-- install MSYS2 as described in http://www.msys2.org
-- in MSYS2 console install CURL development files:
-  `pacman -S mingw-w64-x86_64-curl-winssl mingw-w64-i686-curl-winssl`
+To build locally: just `./gradlew build`
 
 
 ### CHANGELOG
@@ -27,3 +24,9 @@ To build locally:
 #### 23 Jul 2021
 
 * switch back to `curl-winssl` variant
+
+
+#### 28 Jun 2022
+
+* update Kotlin to 1.7.0
+* switch to bunled libs (for cross-compilation on Linux and Mac hosts)
