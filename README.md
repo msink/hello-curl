@@ -30,3 +30,10 @@ To build locally: just `./gradlew build`
 
 * update Kotlin to 1.7.0
 * switch to bundled libs (for cross-compilation on Linux and Mac hosts)
+
+#### 31 Aug 2022
+
+* update Kotlin to 1.7.10
+* switch back to use installed libs by default, for cross-compilation
+  on Linux or Mac hosts - comment line 13 and uncomment line 14
+  in build.gradle.kts to use bundled
