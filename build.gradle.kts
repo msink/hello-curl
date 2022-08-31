@@ -10,8 +10,8 @@ repositories {
     mavenCentral()
 }
 
-//val msys2 = File(System.getenv("MSYS2_ROOT") ?: "C:/msys64/")
-val msys2 = projectDir.resolve("bundle/2022-06-23")
+val msys2 = File(System.getenv("MSYS2_ROOT") ?: "C:/msys64/")
+//val msys2 = projectDir.resolve("bundle/2022-08-31")
 
 kotlin {
     mingwX64("mingw64")
@@ -36,24 +36,21 @@ kotlin {
         binaries.executable {
             entryPoint = "curl.main"
             linkerOpts(
-                "-L${msys2.resolve("${targetName}/lib")}",
-                "-Wl,-Bstatic",
-                "-lstdc++",
-                "-static",
-                "-lcurl",
-                "-lidn2",
-                "-lssh2",
-                "-lpsl",
+                "-Wl,-Bstatic", "-lstdc++", "-static",
+                "${msys2}/${targetName}/lib/libcurl.a",
+                "${msys2}/${targetName}/lib/libssh2.a",
+                "${msys2}/${targetName}/lib/libidn2.a",
+                "${msys2}/${targetName}/lib/libpsl.a",
+                "${msys2}/${targetName}/lib/libbrotlidec.a",
+                "${msys2}/${targetName}/lib/libbrotlicommon.a",
+                "${msys2}/${targetName}/lib/libunistring.a",
+                "${msys2}/${targetName}/lib/libzstd.a",
                 "-lbcrypt",
                 "-lcrypt32",
+                "-liconv",
                 "-lwldap32",
-                "-lzstd",
-                "-lbrotlidec",
-                "-lbrotlicommon",
-                "-lz",
                 "-lws2_32",
-                "-lunistring",
-                "-liconv"
+                "-lz",
             )
         }
     }
