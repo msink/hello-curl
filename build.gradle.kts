@@ -35,16 +35,23 @@ kotlin {
         }
         binaries.executable {
             entryPoint = "curl.main"
+
+            fun lib(foo: String) = "${msys2}/${targetName}/lib/lib${foo}.a"
             linkerOpts(
+                //fully static linking
                 "-Wl,-Bstatic", "-lstdc++", "-static",
-                "${msys2}/${targetName}/lib/libcurl.a",
-                "${msys2}/${targetName}/lib/libssh2.a",
-                "${msys2}/${targetName}/lib/libidn2.a",
-                "${msys2}/${targetName}/lib/libpsl.a",
-                "${msys2}/${targetName}/lib/libbrotlidec.a",
-                "${msys2}/${targetName}/lib/libbrotlicommon.a",
-                "${msys2}/${targetName}/lib/libunistring.a",
-                "${msys2}/${targetName}/lib/libzstd.a",
+
+                //from MSYS2 distribution:
+                lib("curl"),
+                lib("ssh2"),
+                lib("idn2"),
+                lib("psl"),
+                lib("brotlidec"),
+                lib("brotlicommon"),
+                lib("unistring"),
+                lib("zstd"),
+
+                //from K/N distribution:
                 "-lbcrypt",
                 "-lcrypt32",
                 "-liconv",
