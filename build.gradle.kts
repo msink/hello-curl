@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.konan.target.HostManager
 
 plugins {
     kotlin("multiplatform") version "1.7.10"
@@ -10,8 +11,11 @@ repositories {
     mavenCentral()
 }
 
-val msys2root = File(System.getenv("MSYS2_ROOT") ?: "C:/msys64/")
-//val msys2root = projectDir.resolve("bundle/2022-08-31")
+val msys2root =
+    if (HostManager.hostOs() == "windows")
+        File(System.getenv("MSYS2_ROOT") ?: "C:/msys64/")
+    else
+        projectDir.resolve("bundle/2022-08-31")
 
 kotlin {
     mingwX64("mingw64")
