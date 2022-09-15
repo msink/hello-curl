@@ -37,3 +37,8 @@ To build locally: just `./gradlew build`
 * switch back to use installed libs by default, for cross-compilation
   on Linux or Mac hosts - comment line 13 and uncomment line 14
   in build.gradle.kts to use bundled
+
+#### 15 Sep 2022
+
+* cleanup buildscript a little
+* use bundled libs if hostOs is not windows
